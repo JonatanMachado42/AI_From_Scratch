@@ -39,15 +39,15 @@ ai-studies/
   
   - [ ] Configurar ambiente (venv), Git e instalar `black` (linter) e `pytest`.
     
-  - [ ] Criar estrutura de pastas.
+  - [X] Criar estrutura de pastas.
     
-- [ ] **Modelo: K-Nearest Neighbors (KNN)**
+- [X] **Modelo: K-Nearest Neighbors (KNN)**
   
-  - [ ] Criar classe `KNNClassifier` em `src/models/knn.py`.
+  - [X] Criar classe `KNNClassifier` em `src/models/knn.py`.
     
-  - [ ] Implementar `.fit(X, y)` (Apenas armazena dados).
+  - [ X Implementar `.fit(X, y)` (Apenas armazena dados).
     
-  - [ ] Implementar `.predict(X)` usando **Broadcasting do NumPy** para calcular Distância Euclidiana ($\sqrt{\sum(x-y)^2}$) sem loops `for`.
+  - [X] Implementar `.predict(X)` usando **Broadcasting do NumPy** para calcular Distância Euclidiana ($\sqrt{\sum(x-y)^2}$) sem loops `for`.
     
 - [ ] **Métricas (Do Zero)**
   

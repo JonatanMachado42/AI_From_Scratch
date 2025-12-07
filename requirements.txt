@@ -9,10 +9,6 @@ scikit-learn>=1.2.0
 torch>=2.0.0          # O gigante (PyTorch)
 torchvision>=0.15.0   # Para datasets de imagem (Módulo 2)
 
-# --- NLP & Advanced (Módulo 3) ---
-transformers>=4.30.0  # Hugging Face
-yfinance              # Para baixar dados financeiros
-shap                  # Para explicar modelos
 
 # --- Ferramentas de Engenharia (Dev Tools) ---
 pytest                # Para seus testes unitários
