@@ -1,43 +1,28 @@
-import numpy as np 
-import sys
-import os 
-import matplotlib
-matplotlib.use("TkAgg")  # ou Qt5Agg
-import matplotlib.pyplot as plt
+# tests/test_knn.py
+import numpy as np
 from sklearn.datasets import make_blobs
+from sklearn.neighbors import KNeighborsClassifier
+from src.models.knn import KNNClassifier  
 
-import sys
-import os
-
-# Pega o diretório atual onde o notebook está rodando
-current_dir = os.getcwd()
-
-# Sobe um nível (vai para a pasta pai, que é a raiz do projeto)
-root_dir = os.path.abspath(os.path.join(current_dir, '..'))
-
-# Adiciona ao path
-sys.path.append(root_dir)
-
-# Teste para ver se funcionou (deve imprimir o caminho da sua pasta ai-studies)
-print(f"Raiz do projeto adicionada: {root_dir}")
-
-# Agora tente importar
-from src.models.knn import KNNClassifier
-
-
-
-
-# Cria 300 pontos divididos em 4 grupos (clusters)
-X_dataset, y_dataset = make_blobs(n_samples=300, centers=4, n_features=2, random_state=42)
-X_test, y_test = make_blobs(n_samples=60, centers=4, n_features=2, random_state=42)
-
-
-knn = KNNClassifier(k=4)
-knn.fit(X_dataset,y_dataset)
-y_pred = knn.predict(X_test)
-
-plt.figure(figsize=(6,5))
-
-plt.scatter(X_dataset[:,0], X_dataset[:,1], c=y_dataset, cmap="viridis", s=40, label="Dataset")
-plt.scatter(X_test[:,0], X_test[:,1], c=y_pred,cmap="viridis",marker="^",s=70,edgecolors="black",label="Test")
-plt.show()
+def test_knn_match_sklearn():
+    """
+    Testando a capacidade do meu modelo proprio de kNN contra o modelo completo do Scikit-learn 
+    """
+    # 1. Gerar dados
+    X, y = make_blobs(n_samples=100, centers=3, n_features=2, random_state=42)
+    
+    # 2. Modelo do Scikit-Learn
+    sk_model = KNeighborsClassifier(n_neighbors=3, algorithm='brute')
+    sk_model.fit(X, y)
+    expected_preds = sk_model.predict(X)
+    
+    # 3. Meu modelo
+    my_model = KNNClassifier(k=3)
+    my_model.fit(X, y)
+    actual_preds = my_model.predict(X)
+    
+    # 4. A Prova Real
+    assert np.array_equal(actual_preds, expected_preds)
+    
+    #5. Testar se a acurácia 
+    assert np.mean(actual_preds == y) > 0.9
