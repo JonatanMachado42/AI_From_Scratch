@@ -16,5 +16,6 @@ print("---------------")
 scaler = MinMaxScaler()
 
 scaler.fit(X)
-algo = scaler.transform(X)
-print(algo[:5])
+normalized_dataset = scaler.transform(X)
+
+print(normalized_dataset[:5])
